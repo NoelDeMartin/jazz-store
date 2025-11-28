@@ -1,0 +1,16 @@
+services:
+    app:
+        image: noeldemartin/jazz-store
+        volumes:
+            - ./database:/app/database
+            - ./.env:/app/.env
+        restart: unless-stopped
+        networks:
+            default:
+                aliases:
+                    - jazz-store
+
+networks:
+    default:
+        name: nginx-agora
+        external: true
