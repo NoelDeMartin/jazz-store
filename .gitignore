@@ -1,4 +1,3 @@
 node_modules/
 sync-db/
-db/
 .env
