@@ -6,7 +6,7 @@
     "prepare": "pnpx @better-auth/cli migrate",
     "start": "concurrently \"pnpm start:auth\" \"pnpm start:sync\"",
     "start:auth": "dotenv -e .env -- node src/index.js",
-    "start:sync": "dotenv -e .env -- jazz-run sync"
+    "start:sync": "dotenv -e .env -- jazz-run sync --host 0.0.0.0 --db ./database/sync.sql"
   },
   "packageManager": "pnpm@10.17.1",
   "dependencies": {

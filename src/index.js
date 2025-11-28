@@ -52,11 +52,14 @@ fastify.route({
   },
 });
 
-fastify.listen({ port: 3000 }, function (error, address) {
+const host = "0.0.0.0";
+const port = 3000;
+
+fastify.listen({ host, port }, function (error) {
   if (error) {
     fastify.log.error(error);
     process.exit(1);
   }
 
-  console.log(`Listening on ${address}`);
+  console.log(`Listening on ${host}:${port}`);
 });

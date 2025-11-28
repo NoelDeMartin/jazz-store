@@ -10,9 +10,20 @@ const __dirname = dirname(__filename);
 export const auth = betterAuth({
   plugins: [jazzPlugin()],
   trustedOrigins: process.env.TRUSTED_ORIGINS.split(","),
-  database: new Database(join(__dirname, "../db/sqlite.db")),
+  database: new Database(join(__dirname, "../database/auth.db")),
   emailAndPassword: {
     enabled: true,
-    disableSignUp: process.env.NODE_ENV === "production",
+    disableSignUp: process.env.BETTER_AUTH_ENABLE_SIGN_UP
+      ? false
+      : process.env.NODE_ENV === "production",
   },
+  advanced:
+    process.env.NODE_ENV === "production"
+      ? {
+          defaultCookieAttributes: {
+            secure: true,
+            sameSite: "none",
+          },
+        }
+      : {},
 });
