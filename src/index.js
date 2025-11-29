@@ -1,8 +1,13 @@
-import { auth } from "./auth.js";
 import Fastify from "fastify";
 import fastifyCors from "@fastify/cors";
+import { auth } from "./auth.js";
+import { readFile } from "fs/promises";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
 
 const fastify = Fastify();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 fastify.register(fastifyCors, {
   origin: process.env.TRUSTED_ORIGINS.split(","),
@@ -15,6 +20,13 @@ fastify.register(fastifyCors, {
   ],
   credentials: true,
   maxAge: 86400,
+});
+
+fastify.get("/", async function (_, response) {
+  const html = await readFile(join(__dirname, "index.html"), "utf-8");
+
+  response.type("text/html");
+  response.send(html);
 });
 
 fastify.route({
