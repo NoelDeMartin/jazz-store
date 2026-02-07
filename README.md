@@ -1,5 +1,8 @@
 # Jazz Store
 
+> [!WARNING]
+> I'm not running this anymore, you can find more about my experiments with Jazz [in my development journal](https://noeldemartin.com/tasks/making-a-shows-tracker-with-jazz).
+
 This is the source code for my self-hosted [Jazz Sync Server](https://jazz.tools).
 
 You'll notice that it's very simple. It just consists of a bare bones [Fastify](https://fastify.dev) server for a [Better Auth](https://www.better-auth.com/) backend, and the [`jazz-run` cli](https://jazz.tools/docs/react/core-concepts/sync-and-storage#self-hosting-your-sync-server).
